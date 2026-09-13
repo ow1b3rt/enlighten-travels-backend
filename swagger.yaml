@@ -1,0 +1,1089 @@
+openapi: 3.0.0
+info:
+  title: 'Enlighten Education Consultancy API '
+  version: 1.0.0
+  description: 'API documentation using Swagger'
+servers:
+  -
+    url: 'http://localhost:5000'
+components:
+
+  schemas:
+    Auth:
+      type: object
+      properties:
+        user:
+          $ref: '#/components/schemas/Users'
+        accessToken:
+          type: string
+          example: eyJhbGciOiJIUzI1NiIs...
+        refreshToken:
+          type: string
+          example: eyJhbGciOiJIUzI1NiIs...
+      required:
+        - user
+        - accessToken
+        - refreshToken
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+        code:
+          type: string
+      required:
+        - message
+    Authors:
+      type: object
+      properties:
+        id:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        userId:
+          type: string
+        bio:
+          type: string
+        facebookUrl:
+          type: string
+        linkedinUrl:
+          type: string
+        youtubeUrl:
+          type: string
+        instagramUrl:
+          type: string
+        twitterUrl:
+          type: string
+        tiktokUrl:
+          type: string
+      required:
+        - id
+        - createdAt
+        - updatedAt
+        - userId
+    AuthorsInput:
+      type: object
+      properties:
+        userId:
+          type: string
+        bio:
+          type: string
+        facebookUrl:
+          type: string
+        linkedinUrl:
+          type: string
+        youtubeUrl:
+          type: string
+        instagramUrl:
+          type: string
+        twitterUrl:
+          type: string
+        tiktokUrl:
+          type: string
+      required:
+        - userId
+    Blogs:
+      type: object
+      properties:
+        id:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        publishedAt:
+          type: string
+          format: date-time
+        title:
+          type: string
+        slug:
+          type: string
+        content:
+          type: string
+        thumbnail:
+          type: string
+        authorId:
+          type: string
+        viewCount:
+          type: integer
+        status:
+          type: string
+          enum:
+            - draft
+            - published
+        metaTitle:
+          type: string
+        metaDescription:
+          type: string
+        canonicalUrl:
+          type: string
+        ogTitle:
+          type: string
+        ogDescription:
+          type: string
+        schema:
+          type: string
+        redirectUrl:
+          type: string
+      required:
+        - id
+        - createdAt
+        - updatedAt
+        - title
+        - slug
+        - content
+        - authorId
+        - viewCount
+        - status
+    BlogsInput:
+      type: object
+      properties:
+        publishedAt:
+          type: string
+          format: date-time
+        title:
+          type: string
+        slug:
+          type: string
+        content:
+          type: string
+        thumbnail:
+          type: string
+        authorId:
+          type: string
+        viewCount:
+          type: integer
+        status:
+          type: string
+          enum:
+            - draft
+            - published
+        metaTitle:
+          type: string
+        metaDescription:
+          type: string
+        canonicalUrl:
+          type: string
+        ogTitle:
+          type: string
+        ogDescription:
+          type: string
+        schema:
+          type: string
+        redirectUrl:
+          type: string
+      required:
+        - title
+        - slug
+        - content
+        - authorId
+        - viewCount
+        - status
+    Classes:
+      type: object
+      properties:
+        id:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        name:
+          type: string
+        startTime:
+          type: string
+        endTime:
+          type: string
+      required:
+        - id
+        - createdAt
+        - updatedAt
+        - name
+        - startTime
+        - endTime
+    ClassesInput:
+      type: object
+      properties:
+        name:
+          type: string
+        startTime:
+          type: string
+        endTime:
+          type: string
+      required:
+        - name
+        - startTime
+        - endTime
+    Countries:
+      type: object
+      properties:
+        id:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        name:
+          type: string
+        slug:
+          type: string
+        content:
+          type: string
+      required:
+        - id
+        - createdAt
+        - updatedAt
+        - name
+        - slug
+    CountriesInput:
+      type: object
+      properties:
+        name:
+          type: string
+        slug:
+          type: string
+        content:
+          type: string
+      required:
+        - name
+        - slug
+    Events:
+      type: object
+      properties:
+        id:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        content:
+          type: string
+        title:
+          type: string
+        slug:
+          type: string
+        description:
+          type: string
+      required:
+        - id
+        - createdAt
+        - updatedAt
+        - title
+        - slug
+    EventsInput:
+      type: object
+      properties:
+        content:
+          type: string
+        title:
+          type: string
+        slug:
+          type: string
+        description:
+          type: string
+      required:
+        - title
+        - slug
+    Media:
+      type: object
+      properties:
+        id:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        url:
+          type: string
+        alt:
+          type: string
+        title:
+          type: string
+        type:
+          type: string
+          enum:
+            - image
+            - video
+            - pdf
+            - docx
+        caption:
+          type: string
+      required:
+        - id
+        - createdAt
+        - updatedAt
+        - url
+        - alt
+        - title
+        - type
+    MediaInput:
+      type: object
+      properties:
+        url:
+          type: string
+        alt:
+          type: string
+        title:
+          type: string
+        type:
+          type: string
+          enum:
+            - image
+            - video
+            - pdf
+            - docx
+        caption:
+          type: string
+      required:
+        - url
+        - alt
+        - title
+        - type
+    Notices:
+      type: object
+      properties:
+        id:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        content:
+          type: string
+        title:
+          type: string
+        slug:
+          type: string
+        description:
+          type: string
+      required:
+        - id
+        - createdAt
+        - updatedAt
+        - title
+        - slug
+    NoticesInput:
+      type: object
+      properties:
+        content:
+          type: string
+        title:
+          type: string
+        slug:
+          type: string
+        description:
+          type: string
+      required:
+        - title
+        - slug
+    Registrations:
+      type: object
+      properties:
+        id:
+          type: string
+        classId:
+          type: string
+        studentId:
+          type: string
+        type:
+          type: string
+          enum:
+            - counseling
+            - class
+      required:
+        - id
+        - type
+    RegistrationsInput:
+      type: object
+      properties:
+        classId:
+          type: string
+        studentId:
+          type: string
+        type:
+          type: string
+          enum:
+            - counseling
+            - class
+      required:
+        - type
+    Students:
+      type: object
+      properties:
+        id:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        name:
+          type: string
+        email:
+          type: string
+        phone:
+          type: string
+        gpa:
+          type: string
+        qualification:
+          type: string
+          enum:
+            - '+2'
+            - 'High School'
+            - Graduate
+            - Undergraduate
+            - SEE
+            - Diploma
+      required:
+        - id
+        - createdAt
+        - updatedAt
+        - name
+        - email
+        - phone
+        - gpa
+    StudentsInput:
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+        phone:
+          type: string
+        gpa:
+          type: string
+        qualification:
+          type: string
+          enum:
+            - '+2'
+            - 'High School'
+            - Graduate
+            - Undergraduate
+            - SEE
+            - Diploma
+      required:
+        - name
+        - email
+        - phone
+        - gpa
+    SuccessProfiles:
+      type: object
+      properties:
+        id:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        name:
+          type: string
+        country:
+          type: string
+        content:
+          type: string
+      required:
+        - id
+        - createdAt
+        - updatedAt
+        - name
+    SuccessProfilesInput:
+      type: object
+      properties:
+        name:
+          type: string
+        country:
+          type: string
+        content:
+          type: string
+      required:
+        - name
+    Users:
+      type: object
+      properties:
+        id:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        name:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+        role:
+          type: string
+          enum:
+            - admin
+            - editor
+            - author
+        avatar:
+          type: string
+      required:
+        - id
+        - createdAt
+        - updatedAt
+        - name
+        - email
+        - role
+    UsersInput:
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+        role:
+          type: string
+          enum:
+            - admin
+            - editor
+            - author
+        avatar:
+          type: string
+      required:
+        - name
+        - email
+        - role
+paths:
+  /api/users:
+    get:
+      summary: 'Get all users'
+      tags:
+        - Users
+      responses:
+        '200':
+          description: 'A list of users'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Users'
+    post:
+      summary: 'Create a user'
+      tags:
+        - Users
+      responses:
+        '201':
+          description: 'users created'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Users'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UsersInput'
+  '/api/users/{id}':
+    patch:
+      summary: 'Update a user'
+      tags:
+        - Users
+      parameters:
+        -
+          in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 'users updated'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Users'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UsersInput'
+    delete:
+      summary: 'Delete a user'
+      tags:
+        - Users
+      parameters:
+        -
+          in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 'User deleted'
+  /api/students:
+    get:
+      summary: 'Get all students'
+      tags:
+        - Students
+      responses:
+        '200':
+          description: 'A list of students'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Students'
+    post:
+      summary: 'Create a student'
+      tags:
+        - Students
+      responses:
+        '201':
+          description: 'students created'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Students'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StudentsInput'
+  '/api/students/{id}':
+    get:
+      summary: 'Get a student by ID'
+      tags:
+        - Students
+      parameters:
+        -
+          in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 'students details'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Students'
+    patch:
+      summary: 'Update a student'
+      tags:
+        - Students
+      parameters:
+        -
+          in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 'students updated'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Students'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StudentsInput'
+    delete:
+      summary: 'Delete a student'
+      tags:
+        - Students
+      parameters:
+        -
+          in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 'Student deleted'
+  /api/notices:
+    get:
+      summary: 'Get all notices'
+      tags:
+        - Notices
+      responses:
+        '200':
+          description: 'A list of notices'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Notices'
+    post:
+      summary: 'Create a notice'
+      tags:
+        - Notices
+      responses:
+        '201':
+          description: 'notices created'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Notices'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NoticesInput'
+  '/api/notices/{id}':
+    get:
+      summary: 'Get a notice by ID'
+      tags:
+        - Notices
+      parameters:
+        -
+          in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 'notices details'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Notices'
+    patch:
+      summary: 'Update a notice'
+      tags:
+        - Notices
+      parameters:
+        -
+          in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 'notices updated'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Notices'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NoticesInput'
+    delete:
+      summary: 'Delete a notice'
+      tags:
+        - Notices
+      parameters:
+        -
+          in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 'Notice deleted'
+  /api/events:
+    get:
+      summary: 'Get all events'
+      tags:
+        - Events
+      responses:
+        '200':
+          description: 'A list of events'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Events'
+    post:
+      summary: 'Create an event'
+      tags:
+        - Events
+      responses:
+        '201':
+          description: 'events created'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Events'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EventsInput'
+  '/api/events/{id}':
+    get:
+      summary: 'Get an event by ID'
+      tags:
+        - Events
+      parameters:
+        -
+          in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 'events details'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Events'
+    patch:
+      summary: 'Update an event'
+      tags:
+        - Events
+      parameters:
+        -
+          in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 'events updated'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Events'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EventsInput'
+    delete:
+      summary: 'Delete an event'
+      tags:
+        - Events
+      parameters:
+        -
+          in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 'Event deleted'
+  /api/classes:
+    get:
+      summary: 'Get all classes'
+      tags:
+        - Classes
+      responses:
+        '200':
+          description: 'A list of classes'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Classes'
+    post:
+      summary: 'Create a class'
+      tags:
+        - Classes
+      responses:
+        '201':
+          description: 'classes created'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Classes'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ClassesInput'
+  '/api/classes/{id}':
+    get:
+      summary: 'Get a class by ID'
+      tags:
+        - Classes
+      parameters:
+        -
+          in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 'classes details'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Classes'
+    patch:
+      summary: 'Update a class'
+      tags:
+        - Classes
+      parameters:
+        -
+          in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 'classes updated'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Classes'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ClassesInput'
+    delete:
+      summary: 'Delete a class'
+      tags:
+        - Classes
+      parameters:
+        -
+          in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 'Class deleted'
+  /api/auth/login:
+    post:
+      summary: Login user
+      description: Authenticate a user and return an access token.
+      tags:
+        - Auth
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - email
+                - password
+              properties:
+                email:
+                  type: string
+                  format: email
+                  example: user@example.com
+                password:
+                  type: string
+                  format: password
+                  example: password123
+      responses:
+        '200':
+          description: Successful login
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Auth'
+        '401':
+          description: Invalid credentials
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/auth/refresh:
+    post:
+      summary: 'Refresh token'
+      tags:
+        - Auth
+      responses:
+        '200':
+          description: 'Token refreshed'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Auth'
+  /api/auth/logout:
+    post:
+      summary: 'Logout user'
+      tags:
+        - Auth
+      responses:
+        '200':
+          description: 'Logged out successfully'
+  /api/auth/me:
+    get:
+      summary: Get current user
+      tags:
+        - Auth
+      responses:
+        '200':
+          description: Current authenticated user
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Users'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+tags:
+  -
+    name: Users
+    description: 'Users API'
+  -
+    name: Students
+    description: 'Students API'
+  -
+    name: Notices
+    description: 'Notices API'
+  -
+    name: Events
+    description: 'Events API'
+  -
+    name: Classes
+    description: 'Classes API'
+  -
+    name: Auth
+    description: 'Authentication API'
