@@ -47,7 +47,7 @@ export const users = pgTable(
 
     check(
       "users_password_hash_length_check",
-      sql`length(${table.passwordHash}) >= 20`,
+      sql`length(${table.password}) >= 20`,
     ),
   ],
 );
