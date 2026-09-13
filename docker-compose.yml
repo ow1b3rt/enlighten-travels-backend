@@ -1,7 +1,7 @@
 services:
   postgres:
     image: postgres:17
-    container_name: enlighten-education-postgres
+    container_name: enlighten-travels-postgres
     restart: unless-stopped
 
     environment:

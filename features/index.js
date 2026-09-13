@@ -7,6 +7,7 @@ import authorsRoutes from "./authors/authors.routes.js";
 import layoutRoutes from "./layouts/layouts.routes.js";
 import blogRoutes from "./blogs/blogs.routes.js";
 import mediaRoutes from "./media/media.routes.js";
+import testimonialsRoutes from "./testimonials/testimonials.routes.js";
 
 const router = Router();
 
@@ -16,4 +17,5 @@ router.use("/authors", authorsRoutes);
 router.use("/layouts", layoutRoutes);
 router.use("/blogs", blogRoutes);
 router.use("/media", mediaRoutes);
+router.use("/testimonials", testimonialsRoutes);
 export default router;
