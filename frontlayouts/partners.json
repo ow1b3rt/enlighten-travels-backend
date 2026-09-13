@@ -1,0 +1,26 @@
+[
+  {
+    "name": "Buddha Air",
+    "logo": "/images/partners/buddha-air.svg"
+  },
+  {
+    "name": "Shree Airlines",
+    "logo": "/images/partners/shree-airlines.jpg"
+  },
+  {
+    "name": "Nepal Airlines",
+    "logo": "/images/partners/nepal-airlines.png"
+  },
+  {
+    "name": "Partner 4",
+    "logo": "/images/partners/yeti-airlines.jpg"
+  },
+  {
+    "name": "Partner 5",
+    "logo": "/images/partners/meow-airline.jpeg"
+  },
+  {
+    "logo": "http://localhost:5000/uploads/media/f115fe7f-8e2a-4b2b-a29b-56e93be68254.jpg",
+    "name": "canada"
+  }
+]
