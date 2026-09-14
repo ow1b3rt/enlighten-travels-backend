@@ -4,6 +4,8 @@ import {
   commonFindAll, commonFindById, commonCreate, commonUpdate, commonDelete, commonFindBySlug
 } from "./common.repository.js";
 import { comparator } from "../utils/patcher.js";
+import { emptyObject } from "../utils/objectutils.js";
+import { getTableName } from "drizzle-orm";
 
 
 export async function commonGetService(table, query) {
@@ -11,36 +13,40 @@ export async function commonGetService(table, query) {
   return data
 }
 
-export async function commonCreateService(table, data) {
-  const result = await commonCreate(table, data)
+export async function commonCreateService(table, data, dbClient) {
+  const result = await commonCreate(table, data, dbClient)
   return result
 }
 
-export async function commonUpdateService(table, id, data) {
+export async function commonUpdateService(table, id, data, dbClient) {
   const existing = await commonFindById(table, id)
   if (!existing) {
-    throw new HttpError(`Record with id ${id} does not exist`, StatusCodes.NOT_FOUND)
+    throw new HttpError(`${getTableName(table)} with id ${id} does not exist`, StatusCodes.NOT_FOUND)
   }
 
   const changes = comparator(existing, data)
 
-  const result = await commonUpdate(table, id, changes)
+  if (emptyObject(changes)) {
+    return existing
+  }
+
+  const result = await commonUpdate(table, id, changes, dbClient)
   return result
 }
 
-export async function commonDeleteService(table, id) {
+export async function commonDeleteService(table, id, dbClient) {
   const existing = await commonFindById(table, id)
   if (!existing) {
-    throw new HttpError(`Record with id ${id} does not exist`, StatusCodes.NOT_FOUND)
+    throw new HttpError(`${getTableName(table)} with id ${id} does not exist`, StatusCodes.NOT_FOUND)
   }
-  const result = await commonDelete(table, id)
+  const result = await commonDelete(table, id, dbClient)
   return result
 }
 
 export async function commonGetSingleService(table, id) {
   const existing = await commonFindById(table, id)
   if (!existing) {
-    throw new HttpError(`Record with id ${id} does not exist`, StatusCodes.NOT_FOUND)
+    throw new HttpError(`${getTableName(table)} with id ${id} does not exist`, StatusCodes.NOT_FOUND)
   }
   return existing
 }
@@ -50,7 +56,7 @@ export async function commonGetSingleServiceBySlug(table, slug) {
 
   if (!existing) {
     throw new HttpError(
-      `Record with slug ${slug} doesn't exist`,
+      `${getTableName(table)} with slug ${slug} doesn't exist`,
       StatusCodes.NOT_FOUND,
     );
   }

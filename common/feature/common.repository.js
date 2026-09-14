@@ -2,9 +2,8 @@ import { db } from "../../config/db.js"
 import { eq } from "drizzle-orm"
 import { fromTable, paginateAndSearch } from "../utils/queryhelper.js"
 
-export async function commonCreate(table, data) {
-  const [result] = await db.insert(table).values(data).returning()
-
+export async function commonCreate(table, data, dbClient = db) {
+  const [result] = await dbClient.insert(table).values(data).returning()
   return result
 }
 
@@ -14,7 +13,7 @@ export async function commonFindById(source, id) {
   const { dataQuery } = source && source.dataQuery ? source : fromTable(source);
   let [result] = await dataQuery.where(eq(baseTable.id, id));
 
-  if (result.password) {
+  if (result?.password) {
     let { password, ...rest } = result
     result = rest
   }
@@ -33,9 +32,7 @@ export async function commonFindBySlug(source, slug) {
   return result;
 }
 
-
-export async function commonFindAll(table, query = {}) {
-
+export async function commonFindAll(table, query = {}, fields=null) {
   const result = await paginateAndSearch(table, {
     query: query.search,
     searchFields: query.searchFields,
@@ -43,16 +40,17 @@ export async function commonFindAll(table, query = {}) {
     pageSize: query.pageSize,
     orderBy: query.orderBy,
     where: query.where,
+    fields: fields,
   })
   return result
 }
 
-export async function commonUpdate(table, id, data) {
-  const [result] = await db.update(table).set(data).where(eq(table.id, id)).returning()
+export async function commonUpdate(table, id, data, dbClient = db) {
+  const [result] = await dbClient.update(table).set(data).where(eq(table.id, id)).returning()
   return result
 }
 
-export async function commonDelete(table, id) {
-  const [result] = await db.delete(table).where(eq(table.id, id)).returning()
+export async function commonDelete(table, id, dbClient = db) {
+  const [result] = await dbClient.delete(table).where(eq(table.id, id)).returning()
   return result
 }

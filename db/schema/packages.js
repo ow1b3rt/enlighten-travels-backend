@@ -2,6 +2,8 @@ import * as t from "drizzle-orm/pg-core";
 import { pkid, timestamps } from "./helpers.js";
 import { media } from "./media.js";
 
+export const categoryEnum = t.pgEnum("category", ["adventure", "tour"])
+
 export const packages = t.pgTable("packages", {
   ...pkid,
   ...timestamps,
@@ -11,7 +13,8 @@ export const packages = t.pgTable("packages", {
   price: t.integer("price").notNull(),
   discountedPrice: t.integer("discounted_price"),
   description: t.text("description"),
-  tourType: t.varchar("tour_type", { length: 255 }).notNull(),
+  category: categoryEnum("category").notNull(),
+  subcategory: t.varchar("subcategory", { length: 255 }).notNull(),
   packageType: t.varchar("package_type", { length: 255 }).notNull(),
 });
 

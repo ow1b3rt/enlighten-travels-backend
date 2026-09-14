@@ -10,24 +10,26 @@ const JOIN_METHODS = {
 };
 
 // Builds a base data/count query pair from a single table
-export function fromTable(table) {
+export function fromTable(table, fields) {
   return {
-    dataQuery: db.select().from(table),
+    dataQuery: fields ? db.select(fields).from(table) : db.select().from(table),
     countQuery: db.select({ count: sql`count(*)::int` }).from(table),
   };
 }
 
 // Builds a base data/count query pair from a join — pass this into paginateAndSearch
-export function join(baseTable, joinTable, { on, fields, type = "inner", name } = {}) {
+export function join(
+  baseTable,
+  joinTable,
+  { on, fields, type = "inner", name } = {},
+) {
   const method = JOIN_METHODS[type];
   if (!method) throw new Error(`Unknown join type: ${type}`);
 
-  const columns =
-    fields ??
-    {
-      ...getTableColumns(baseTable),
-      ...getTableColumns(joinTable),
-    };
+  const columns = fields ?? {
+    ...getTableColumns(baseTable),
+    ...getTableColumns(joinTable),
+  };
 
   const dataQuery = (fields ? db.select(fields) : db.select())
     .from(baseTable)
@@ -42,11 +44,19 @@ export function join(baseTable, joinTable, { on, fields, type = "inner", name } 
 }
 
 export async function paginateAndSearch(
-  source,   // a Table, OR the { dataQuery, countQuery } object returned by join()
-  { query = "", searchFields = [], where, orderBy, page = 1, pageSize = 20 } = {}
+  source, // a Table, OR the { dataQuery, countQuery } object returned by join()
+  {
+    query = "",
+    searchFields = [],
+    where,
+    orderBy,
+    page = 1,
+    pageSize = 20,
+    fields, // column selection — only used when source is a raw Table
+  } = {},
 ) {
   const { dataQuery: baseData, countQuery: baseCount } =
-    source && source.dataQuery ? source : fromTable(source);
+    source && source.dataQuery ? source : fromTable(source, fields);
 
   const searchCondition =
     query.trim() !== "" && searchFields.length > 0
@@ -65,20 +75,27 @@ export async function paginateAndSearch(
   }
   if (orderBy) dataQuery = dataQuery.orderBy(orderBy);
 
-
-  const offset = (Number(page) - 1) * Number(pageSize);
+  const offset = (Number(page) - 1) * pageSize;
   const [items, countResult] = await Promise.all([
     dataQuery.limit(Number(pageSize)).offset(offset),
     countQuery,
   ]);
 
   const total = countResult[0].count;
-  return { items, total, page, pageSize, totalPages: Math.ceil(total / Number(pageSize)) };
+  return {
+    items,
+    total,
+    page,
+    pageSize,
+    totalPages: Math.ceil(total / pageSize),
+  };
 }
 
-
-
-export function buildWhereFromQuery(table, queryParams = {}, allowedFields = []) {
+export function buildWhereFromQuery(
+  table,
+  queryParams = {},
+  allowedFields = [],
+) {
   const columns = table.columns ?? getTableColumns(table);
   const conditions = [];
 
@@ -104,3 +121,5 @@ function coerceValue(value, column) {
 
   return value;
 }
+
+

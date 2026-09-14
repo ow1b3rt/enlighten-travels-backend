@@ -3,3 +3,8 @@ export * from "./blogs.js";
 export * from "./media.js";
 export * from "./users.js";
 export * from "./testimonials.js";
+export * from "./packages.js";
+export * from "./packageDestinations.js";
+export * from "./packageDays.js";
+export * from "./destinations.js";
+export * from "./destinationGallery.js";

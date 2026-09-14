@@ -8,6 +8,7 @@ import layoutRoutes from "./layouts/layouts.routes.js";
 import blogRoutes from "./blogs/blogs.routes.js";
 import mediaRoutes from "./media/media.routes.js";
 import testimonialsRoutes from "./testimonials/testimonials.routes.js";
+import destinationsRoutes from "./destinations/destinations.routes.js";
 
 const router = Router();
 
@@ -18,4 +19,5 @@ router.use("/layouts", layoutRoutes);
 router.use("/blogs", blogRoutes);
 router.use("/media", mediaRoutes);
 router.use("/testimonials", testimonialsRoutes);
+router.use("/destinations", destinationsRoutes);
 export default router;
