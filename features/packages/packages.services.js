@@ -1,9 +1,28 @@
 import { eq, and } from "drizzle-orm";
-import { packageDestinations, packageDays } from "#/db/schema/index.js";
+import { packages, packageDestinations, packageDays } from "#/db/schema/index.js";
 import * as s from "#/common/feature/common.services.js";
 import HttpError from "#/common/errors/HttpError.js";
 import { StatusCodes } from "http-status-codes";
 import { diffIds } from "#/common/utils/diffid.js";
+// packages.services.js (add alongside your existing services)
+
+import { paginateAndSearch, resolveOrderBy } from "#/common/utils/queryhelper.js";
+import { buildPackagesSource, buildPackagesWhere } from "./packages.repository.js";
+
+export async function getPackagesListService(query) {
+  const source = buildPackagesSource();
+  const where = buildPackagesWhere(source, query);
+  const orderBy = resolveOrderBy(query.orderBy, source.columns);
+
+  return paginateAndSearch(source, {
+    query: query.search,
+    searchFields: [packages.title, packages.description],
+    where,
+    orderBy,
+    page: query.page,
+    pageSize: query.limit,
+  });
+}
 
 export async function createPackageDestinationsService(pkg, data, tx) {
   const items = [];

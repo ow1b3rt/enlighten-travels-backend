@@ -9,20 +9,10 @@ import { db } from "#/config/db.js";
 import { sql, and, eq, getTableColumns, inArray } from "drizzle-orm";
 import { join, paginateAndSearch, buildWhereFromQuery } from "#/common/utils/queryhelper.js";
 import { asc, desc } from "drizzle-orm";
+import { getPackagesListService } from "./packages.services.js";
 
 // Converts a string like "title" or "-price" into asc(column)/desc(column).
 // `columns` should be the same columns object used elsewhere (table.columns or getTableColumns(table)).
-export function resolveOrderBy(orderByParam, columns) {
-  if (!orderByParam) return undefined;
-
-  const isDescending = orderByParam.startsWith("-");
-  const fieldName = isDescending ? orderByParam.slice(1) : orderByParam;
-
-  const column = columns[fieldName];
-  if (!column) return undefined; // unknown field — ignore rather than throw
-
-  return isDescending ? desc(column) : asc(column);
-}
 
 import {
   createPackageDestinationsService,
@@ -81,53 +71,8 @@ export async function updatePackageController(req, res) {
 
 //===========================================================================================================
 
-
 export async function getPackagesController(req, res) {
-  const filters = ["category", "subcategory", "packageType"];
-
-  const source = join(packages, media, {
-    on: eq(packages.thumbnail, media.id),
-    name: "packages",
-    fields: {
-      ...getTableColumns(packages),
-      thumbnailUrl: media.url,
-    },
-  });
-
-  const baseWhere = buildWhereFromQuery(source, req.query, filters);
-
-  let priceWhere;
-  if (req.query.maxPrice !== undefined && req.query.maxPrice !== "" && !isNaN(req.query.maxPrice)) {
-    priceWhere = sql`coalesce(${packages.discountedPrice}, ${packages.price}) <= ${Number(req.query.maxPrice)}`;
-  }
-
-  let destinationWhere;
-  if (req.query.destinationIds) {
-    const ids = req.query.destinationIds.split(",").filter(Boolean);
-    if (ids.length > 0) {
-      destinationWhere = inArray(
-        packages.id,
-        db
-          .select({ id: packageDestinations.packageId })
-          .from(packageDestinations)
-          .where(inArray(packageDestinations.destinationId, ids))
-      );
-    }
-  }
-
-  const conditions = [baseWhere, priceWhere, destinationWhere].filter(Boolean);
-  const where = conditions.length > 0 ? and(...conditions) : undefined;
-
-  const orderBy = resolveOrderBy(req.query.orderBy, source.columns);
-
-  const data = await paginateAndSearch(source, {
-    query: req.query.search,
-    searchFields: [packages.title, packages.description],
-    where,
-    orderBy,
-    page: req.query.page,
-    pageSize: req.query.limit,
-  });
+  const data = await getPackagesListService(req.query);
 
   res.status(StatusCodes.OK).json({
     success: true,

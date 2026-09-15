@@ -7,6 +7,7 @@ export const createDestinationSchema = createInsertSchema(destinations)
     id: true,
     createdAt: true,
     updatedAt: true,
+    slug: true, // slug will be generated from name
   })
   .extend({
     gallery: z.array(z.uuid()).optional(),
@@ -17,6 +18,7 @@ export const updateDestinationSchema = createUpdateSchema(destinations)
     id: true,
     createdAt: true,
     updatedAt: true,
+    slug: true, // slug will be generated from name
   })
   .extend({
     gallery: z.array(z.uuid()).optional(),

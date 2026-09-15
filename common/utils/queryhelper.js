@@ -1,5 +1,5 @@
 import { sql, ilike, or, and } from "drizzle-orm";
-import { eq, getTableColumns } from "drizzle-orm";
+import { eq, getTableColumns, asc, desc } from "drizzle-orm";
 import { db } from "../../config/db.js";
 
 const JOIN_METHODS = {
@@ -122,4 +122,14 @@ function coerceValue(value, column) {
   return value;
 }
 
+export function resolveOrderBy(orderByParam, columns) {
+  if (!orderByParam) return undefined;
 
+  const isDescending = orderByParam.startsWith("-");
+  const fieldName = isDescending ? orderByParam.slice(1) : orderByParam;
+
+  const column = columns[fieldName];
+  if (!column) return undefined; // unknown field — ignore rather than throw
+
+  return isDescending ? desc(column) : asc(column);
+}

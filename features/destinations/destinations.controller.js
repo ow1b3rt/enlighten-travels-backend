@@ -7,9 +7,11 @@ import { parseBody } from "#/common/utils/parse.js";
 import { db } from "#/config/db.js";
 import { eq, and } from "drizzle-orm";
 import { updateDestinationGalleryService, createDestinationGalleryService } from "./destinations.services.js";
+import { slugify } from "#/common/utils/slugify.js";
 
 export async function createDestinationController(req, res) {
   const data = parseBody(createDestinationSchema, req.body);
+  data.slug = slugify(data.name);
 
   const createdDestination = await db.transaction(async (tx) => {
     const destination = await s.commonCreateService(destinations, data, tx);
@@ -34,6 +36,9 @@ export async function createDestinationController(req, res) {
 
 export async function updateDestinationController(req, res) {
   const data = parseBody(updateDestinationSchema, req.body);
+  if (data.name) {
+    data.slug = slugify(data.name);
+  }
 
   const updatedDestination = await db.transaction(async (tx) => {
     const destination = await s.commonUpdateService(destinations, req.params.id, data, tx);
@@ -72,5 +77,20 @@ export async function getSingleDestinationController(req, res) {
   });
 }
 
+export async function getSingleDestinationBySlugController(req, res) {
+  const destination = await s.commonGetSingleServiceBySlug(destinations, req.params.slug);
+
+  const galleryItems = await db.select({ mediaId: destinationGallery.mediaId })
+    .from(destinationGallery)
+    .where(eq(destinationGallery.destinationId, req.params.id));
+
+  destination.gallery = galleryItems.map(item => item.mediaId);
+
+  res.status(StatusCodes.OK).json({
+    success: true,
+    message: "Destination fetched successfully",
+    item: destination,
+  });
+}
 
 

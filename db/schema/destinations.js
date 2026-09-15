@@ -8,6 +8,7 @@ export const destinations = t.pgTable("destinations", {
   ...timestamps,
 
   name: t.varchar("name", { length: 255 }).notNull(),
+  slug: t.varchar("slug", { length: 255 }).notNull().unique(),
   type: typeEnum("type").notNull(),
   googleUrl: t.text("google_url"),
   description: t.text("description"),
