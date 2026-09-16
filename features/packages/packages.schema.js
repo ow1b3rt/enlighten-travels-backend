@@ -7,6 +7,7 @@ export const createPackageSchema = createInsertSchema(packages)
     id: true,
     createdAt: true,
     updatedAt: true,
+    slug: true, // slug will be generated from name
   })
   .extend({
     destinations: z.array(z.object({
@@ -18,6 +19,7 @@ export const createPackageSchema = createInsertSchema(packages)
       title: z.string(),
       description: z.string().optional(),
     })).optional(),
+    gallery: z.array(z.uuid()).optional(),
   });
 
 export const updatePackageSchema = createUpdateSchema(packages)
@@ -25,6 +27,7 @@ export const updatePackageSchema = createUpdateSchema(packages)
     id: true,
     createdAt: true,
     updatedAt: true,
+    slug: true, // slug will be generated from name
   })
   .extend({
     destinations: z.array(z.object({
@@ -36,4 +39,5 @@ export const updatePackageSchema = createUpdateSchema(packages)
       title: z.string(),
       description: z.string().optional(),
     })).optional(),
-  })
+    gallery: z.array(z.uuid()).optional(),
+  });

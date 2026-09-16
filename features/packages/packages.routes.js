@@ -11,6 +11,7 @@ import {
   updatePackageController,
   getSinglePackageController,
   getPackagesController,
+  getSinglePackageBySlugController,
 } from './packages.controller.js';
 
 
@@ -26,5 +27,8 @@ router.route('/:id')
   .delete(authenticateUser, authorizePermissions("author", "admin", "editor"),
     (req, res) => c.commonDeleteController(req, res, packages)
   );
+
+router.route('/slug/:slug')
+  .get(getSinglePackageBySlugController);
 
 export default router;

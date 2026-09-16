@@ -1,11 +1,9 @@
 import { eq, and } from "drizzle-orm";
-import { packages, packageDestinations, packageDays } from "#/db/schema/index.js";
+import { packages, packageDestinations, packageDays, packageGallery } from "#/db/schema/index.js";
 import * as s from "#/common/feature/common.services.js";
 import HttpError from "#/common/errors/HttpError.js";
 import { StatusCodes } from "http-status-codes";
 import { diffIds } from "#/common/utils/diffid.js";
-// packages.services.js (add alongside your existing services)
-
 import { paginateAndSearch, resolveOrderBy } from "#/common/utils/queryhelper.js";
 import { buildPackagesSource, buildPackagesWhere } from "./packages.repository.js";
 
@@ -23,6 +21,8 @@ export async function getPackagesListService(query) {
     pageSize: query.limit,
   });
 }
+
+//===========================================================================================================
 
 export async function createPackageDestinationsService(pkg, data, tx) {
   const items = [];
@@ -71,6 +71,30 @@ export async function createPackageDaysService(pkg, data, tx) {
   }
 
   return items;
+}
+
+//===========================================================================================================
+
+export async function createPackageGalleryService(req, pkg, data, tx) {
+  let galleryItems = [];
+  if (!data.gallery || data.gallery.length === 0) {
+    return galleryItems;
+  }
+
+  for (const mediaId of data.gallery || []) {
+    const galleryItem = await s.commonCreateService(packageGallery, {
+      packageId: pkg.id,
+      mediaId: mediaId,
+    }, tx);
+
+    if (!galleryItem) {
+      throw new HttpError("Failed to create package gallery item", StatusCodes.BAD_REQUEST);
+    }
+
+    galleryItems.push(galleryItem.mediaId);
+  }
+
+  return galleryItems;
 }
 
 //===========================================================================================================
@@ -179,4 +203,41 @@ export async function updatePackageDaysService(req, data, tx) {
     add: add.map((item) => item.dayNumber),
     updated: update.map((item) => item.dayNumber),
   };
+}
+
+//===========================================================================================================
+
+export async function updatePackageGalleryService(req, data, tx) {
+  let galleryUpdateResult = {};
+
+  if (data.gallery) {
+    const existingGalleryItems = await tx
+      .select({ mediaId: packageGallery.mediaId })
+      .from(packageGallery)
+      .where(eq(packageGallery.packageId, req.params.id));
+
+    const mediaIds = existingGalleryItems.map((item) => item.mediaId);
+    const { remove, add } = diffIds(mediaIds, data.gallery);
+
+    for (const id of remove) {
+      await tx.delete(packageGallery)
+        .where(
+          and(
+            eq(packageGallery.packageId, req.params.id),
+            eq(packageGallery.mediaId, id)
+          )
+        );
+    }
+
+    for (const id of add) {
+      await s.commonCreateService(packageGallery, {
+        packageId: req.params.id,
+        mediaId: id,
+      }, tx);
+    }
+
+    galleryUpdateResult = { remove, add };
+  }
+
+  return galleryUpdateResult;
 }

@@ -1,7 +1,7 @@
 import * as s from "#/common/feature/common.services.js";
 import HttpError from "#/common/errors/HttpError.js";
 import { StatusCodes } from "http-status-codes";
-import { destinations, destinationGallery } from "#/db/schema/index.js";
+import { media, destinations, destinationGallery } from "#/db/schema/index.js";
 import { createDestinationSchema, updateDestinationSchema } from "./destinations.schema.js";
 import { parseBody } from "#/common/utils/parse.js";
 import { db } from "#/config/db.js";
@@ -64,6 +64,9 @@ export async function updateDestinationController(req, res) {
 export async function getSingleDestinationController(req, res) {
   const destination = await s.commonGetSingleService(destinations, req.params.id);
 
+  const destinationThumbnail = await s.commonGetSingleService(media, destination.thumbnail);
+  destination.thumbnailUrl = destinationThumbnail.url;
+
   const galleryItems = await db.select({ mediaId: destinationGallery.mediaId })
     .from(destinationGallery)
     .where(eq(destinationGallery.destinationId, req.params.id));
@@ -80,11 +83,17 @@ export async function getSingleDestinationController(req, res) {
 export async function getSingleDestinationBySlugController(req, res) {
   const destination = await s.commonGetSingleServiceBySlug(destinations, req.params.slug);
 
-  const galleryItems = await db.select({ mediaId: destinationGallery.mediaId })
-    .from(destinationGallery)
-    .where(eq(destinationGallery.destinationId, req.params.id));
+  const destinationThumbnail = await s.commonGetSingleService(media, destination.thumbnail);
+  destination.thumbnailUrl = destinationThumbnail.url;
 
-  destination.gallery = galleryItems.map(item => item.mediaId);
+  const query = db.select({ mediaUrl: media.url })
+      .from(destinationGallery)
+      .leftJoin(media, eq(destinationGallery.mediaId, media.id))
+      .where(eq(destinationGallery.destinationId, destination.id));
+
+  const galleryItems = await query
+
+  destination.gallery = galleryItems.map(item => item.mediaUrl);
 
   res.status(StatusCodes.OK).json({
     success: true,

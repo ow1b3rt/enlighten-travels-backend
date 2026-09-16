@@ -8,3 +8,4 @@ export * from "./packageDestinations.js";
 export * from "./packageDays.js";
 export * from "./destinations.js";
 export * from "./destinationGallery.js";
+export * from "./packageGallery.js";

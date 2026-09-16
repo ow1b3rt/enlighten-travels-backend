@@ -9,6 +9,7 @@ export const packages = t.pgTable("packages", {
   ...timestamps,
 
   title: t.varchar("title", { length: 255 }).notNull(),
+  slug: t.varchar("slug", { length: 255 }).notNull().unique(),
   thumbnail: t.uuid("thumbnail").references(() => media.id),
   price: t.integer("price").notNull(),
   discountedPrice: t.integer("discounted_price"),

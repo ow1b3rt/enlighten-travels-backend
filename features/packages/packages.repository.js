@@ -61,25 +61,56 @@ export function buildPackagesWhere(source, query) {
   const filters = ["category", "subcategory", "packageType"];
   const baseWhere = buildWhereFromQuery(source, query, filters);
 
-  let priceWhere;
+  const conditions = [];
+  if (baseWhere) conditions.push(baseWhere);
+
   if (query.maxPrice !== undefined && query.maxPrice !== "" && !isNaN(query.maxPrice)) {
-    priceWhere = sql`coalesce(${packages.discountedPrice}, ${packages.price}) <= ${Number(query.maxPrice)}`;
+    conditions.push(
+      sql`coalesce(${packages.discountedPrice}, ${packages.price}) <= ${Number(query.maxPrice)}`
+    );
   }
 
-  let destinationWhere;
+  if (query.tourTypes) {
+    const tourTypes = query.tourTypes.split(",").filter(Boolean);
+    if (tourTypes.length > 0) {
+      conditions.push(inArray(packages.packageType, tourTypes));
+    }
+  }
+
   if (query.destinationIds) {
     const ids = query.destinationIds.split(",").filter(Boolean);
     if (ids.length > 0) {
-      destinationWhere = inArray(
-        packages.id,
-        db
-          .select({ id: packageDestinations.packageId })
-          .from(packageDestinations)
-          .where(inArray(packageDestinations.destinationId, ids))
+      conditions.push(
+        inArray(
+          packages.id,
+          db
+            .select({ id: packageDestinations.packageId })
+            .from(packageDestinations)
+            .where(inArray(packageDestinations.destinationId, ids))
+        )
       );
     }
   }
 
-  const conditions = [baseWhere, priceWhere, destinationWhere].filter(Boolean);
+  const hasMinDays = query.minDays !== undefined && query.minDays !== "" && !isNaN(query.minDays);
+  const hasMaxDays = query.maxDays !== undefined && query.maxDays !== "" && !isNaN(query.maxDays);
+
+  if (hasMinDays || hasMaxDays) {
+    const havingConditions = [];
+    if (hasMinDays) havingConditions.push(sql`count(*) >= ${Number(query.minDays)}`);
+    if (hasMaxDays) havingConditions.push(sql`count(*) <= ${Number(query.maxDays)}`);
+
+    conditions.push(
+      inArray(
+        packages.id,
+        db
+          .select({ id: packageDays.packageId })
+          .from(packageDays)
+          .groupBy(packageDays.packageId)
+          .having(and(...havingConditions))
+      )
+    );
+  }
+
   return conditions.length > 0 ? and(...conditions) : undefined;
 }
