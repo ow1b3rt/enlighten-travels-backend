@@ -25,5 +25,5 @@ router.use("/testimonials", testimonialsRoutes);
 router.use("/destinations", destinationsRoutes);
 router.use("/packages", packagesRoutes);
 router.use("/contact", contactRoutes);
-router.use("/customize", customTripsRoutes);
+router.use("/customTrip", customTripsRoutes);
 export default router;
