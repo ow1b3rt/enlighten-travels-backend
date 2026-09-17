@@ -1,0 +1,78 @@
+{
+  "title": "Enlighten Travel and Tours Pvt. Ltd.",
+  "backgroundText": "Services",
+  "heroImage": "https://commons.wikimedia.org/wiki/Special:FilePath/Panoramique_mont_Everest.jpg",
+  "description": "Enlighten Travel and Tours Pvt. Ltd is a well established company, recognized by the Government of Nepal, Ministry of Tourism, that helps individuals and groups discover the magical, magnificent and mysterious nature and heritage of Nepal.",
+  "services": [
+    {
+      "id": "service-ticketing",
+      "slug": "ticketing",
+      "title": "Ticketing",
+      "image": "https://images.pexels.com/photos/1089304/pexels-photo-1089304.jpeg",
+      "descriptionHtml": "<h3 data-level=\"3\">1. Air Ticketing</h3><p>Enlighten Travel and Tours, Pvt. Ltd provides an excellent opportunity to fly within Nepal and all over the world for travelers to and from Nepal, we help to arrange both international and domestic air tickets. We are the stockist of different domestic and international airlines, so buying tickets from us is usually cheaper and reasonable. We arrange air tickets of reputed airlines like Buddha Air, Agni Air, Gorkha Air, Nepal Airways, Sangrila Air, Sita Air, Yeti Air, Air Arabia, Air China, Air Sahara, Austrain Airlines, Biman Bangladesh, China Southern, Druk Air, GMG Airlines, Gulf Air, Indian Airlines, Jet Airlines, Korean Airlines, Pakistan Airlines, Qatar Airways, Royal Nepal Airlines, Thai Airways International etc.</p><p>We provides excellent services, to our valuable clients by arranging doors to doors air tickets at their desired location.</p><h3 data-level=\"3\">2. Bus and Train Ticketing</h3><p>Enlighten Travel and Tours, provides bus tickets at our counter for your comfortable bus ride to various destinations within Nepal such as Kathmandu to Nagarkot / Chitwan / Lumbini / Dhunche / Daman / Indian Borders and elsewhere Besides these, we provide rent car, van, jeep, pajero, hiace coaster and buses with A/C or Not A/C. We also make available train tickets to all destinations in India.</p>"
+    },
+    {
+      "id": "service-tour-package",
+      "slug": "tour-package",
+      "title": "Tour Package",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Panoramique_mont_Everest.jpg",
+      "descriptionHtml": "<p>Enlighten Travel and Tours Pvt.Ltd. offers various special Tour packages at National and International level. Travelling or Trekking with Enlighten Team memories really on long lasting. Our well experienced tour guides, focus on team building workshop, which makes your tour unforgettable but also the most enjoyable in your life. We categorize Special Tour package according to the nature of clients based on profession and level. Just tell us where you want to go and we will do all the work Whether it is simply a trip for 2 or a group of 100, our Travel expert will supply you with detailed itineraries, hand picked accommodation, airfare and above all, friendly and professional service.</p><h3 data-level=\"3\">a. International Tour Package</h3><p>We offer, Tour package at international level, which can actually be afforded by Nepalese people. Having tours to different countries with Enlighten creates interesting and unforgettable moments of life. Some of international tour packages are:</p><ul><li><p class=\"bn-inline-content\">i) Sikkim Tour package</p><ul><li data-nesting-level=\"1\"><p class=\"bn-inline-content\">a) Nepal - Darjeeling - Sikkim (10 night/11 days)</p></li><li data-nesting-level=\"1\"><p class=\"bn-inline-content\">b) Sikkim - Darjeeling highlights (6 night/7 days Himalayan Tour)</p></li></ul></li><li><p class=\"bn-inline-content\">ii) Bhutan Tour Package</p><ul><li data-nesting-level=\"1\"><p class=\"bn-inline-content\">a) Glimpse of Bhutan (3 nights/4 days)</p></li><li data-nesting-level=\"1\"><p class=\"bn-inline-content\">b) Culture Tour to Bhutan (4 nights/5 days)</p></li></ul></li><li><p class=\"bn-inline-content\">iii) Tibet Tour Package</p><ul><li data-nesting-level=\"1\"><p class=\"bn-inline-content\">a) Tibet Cultural Tour (8 days fly in/fly out)</p></li><li data-nesting-level=\"1\"><p class=\"bn-inline-content\">b) Tibet Circle Tour (fly in/fly out)</p></li><li data-nesting-level=\"1\"><p class=\"bn-inline-content\">c) Classic Tibet Tour (6 days)</p></li><li data-nesting-level=\"1\"><p class=\"bn-inline-content\">d) Discover LHASA Tour (4 days)</p></li><li data-nesting-level=\"1\"><p class=\"bn-inline-content\">e) Heart of Tibet Tour (5 days)</p></li></ul></li><li><p class=\"bn-inline-content\">iv) Malaysia Tour Package</p></li><li><p class=\"bn-inline-content\">v) Thailand holidays Tours package (5 night/6 days)</p></li><li><p class=\"bn-inline-content\">vi) Singapore holidays Tour package (5 night/6 days)</p></li></ul><h3 data-level=\"3\">b. National Tour Package</h3><ul><li><p class=\"bn-inline-content\">i) Kathmandu - Nagarkot - Dhulikhel (2 night/3 days)</p></li><li><p class=\"bn-inline-content\">ii) Kathmandu - Pokhara - Chitwan (3 night/4 days)</p></li><li><p class=\"bn-inline-content\">iii) Kathmandu - Pokhara - Chitwan - Lumbini (4 night/5 days)</p></li><li><p class=\"bn-inline-content\">iv) Kathmandu - Pokhara - Chitwan - Lumbini - Palpa (5 night/6 days)</p></li><li><p class=\"bn-inline-content\">v) Kathmandu - Daman - Chitwan - Lumbini (5 night/6 days)</p></li><li><p class=\"bn-inline-content\">vi) Kathmandu - Lumbini - Dhankhola - Burdiya - Nepalganj (5night/6days)</p></li><li><p class=\"bn-inline-content\">vii) Kathmandu - Ghandrung (5night/6 days)</p></li><li><p class=\"bn-inline-content\">viii) Kathmandu - Jomsom - Muktinath (3night/4 days)</p></li><li><p class=\"bn-inline-content\">ix) Kathmandu - Illam - Darjeeling Tour (6 night/7 days)</p></li><li><p class=\"bn-inline-content\">x) Visit Nepal 2011 Tour package (22 night/23 days)</p></li><li><p class=\"bn-inline-content\">xi) Enlighten special Tour package (1 week)</p></li></ul><p>Enlighten Travel and tours Pvt. Ltd. also offers an educational program and research program to the different locations of the country.</p>"
+    },
+    {
+      "id": "service-team-building",
+      "slug": "team-building-workshop",
+      "title": "Team Building Workshop",
+      "image": "https://images.pexels.com/photos/36713494/pexels-photo-36713494.jpeg",
+      "descriptionHtml": "<p>Inspiring leadership and team building (Learning by enjoying): This is not merely a program. It is an adventure to unfold the highest in you, and to learn to inspire leadership and awaken the art and science of creative leadership &amp; team building- in a diversity of realities-Corporates, NGOs, Schools, Families and Community</p><ul><li><p class=\"bn-inline-content\">Learning practical magic to energize people, teams and the organization through the art of developing leaders.</p></li><li><p class=\"bn-inline-content\">Learn how to build lasting relationship with people-both internal and external to impact high performance.</p></li><li><p class=\"bn-inline-content\">Experience the power of Whole body learning a technology that has been used to coach heads of Fortune 50 &amp; Fortune 500 companies.</p></li><li><p class=\"bn-inline-content\">Apart from conventional methods like role-plays &amp; team games, learn breakthrough process like NLP, Open Space etc.</p></li><li><p class=\"bn-inline-content\">Discover how to make effective leadership and creative team results last... sustain the momentum and create a learning organization.</p></li></ul>"
+    },
+    {
+      "id": "service-hotel-reservation",
+      "slug": "hotel-reservation",
+      "title": "Hotel Reservation",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Kathmandu_1.jpg",
+      "descriptionHtml": "<p>Enlighten Travel and Tours Pvt.Ltd. arranges the reservation for all major hotels in Kathmandu, Nagarkot, Dhulikhel, Pokhara, Daman, Chitwan, Lumbini, Palpa, Nepalgunj and other popular destinations in the country. These hotel ranges include tourist standards guesthouse one to five standard, deluxe hotels, resorts to medium standard at various destination.</p>"
+    },
+    {
+      "id": "service-mountain-flight",
+      "slug": "mountain-flight",
+      "title": "Mountain Flight",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Everest-BC-North.jpg",
+      "descriptionHtml": "<p>Enlighten arranges sight seeing by mountain flight, ballowing, ultraflight, around Mt. Everest and other summits providing a close up view of the top of the world.</p>"
+    },
+    {
+      "id": "service-sight-seeing",
+      "slug": "sight-seeing",
+      "title": "Sight Seeing",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Three_saddhus_at_Kathmandu_Durbar_Square.jpg",
+      "descriptionHtml": "<p>Enlighten Travel offers the sight seeing program within Kathmandu and other major cities in Nepal. Some of the sight seeing places are:</p><h3 data-level=\"3\">Cultural:</h3><ul><li><p class=\"bn-inline-content\">Swayambhu Nath (Monkey Temple)</p></li><li><p class=\"bn-inline-content\">Bouddha Nath</p></li><li><p class=\"bn-inline-content\">Bhaktapur Durbar Square</p></li><li><p class=\"bn-inline-content\">Changunarayan</p></li><li><p class=\"bn-inline-content\">Pashupati Nath (Hindu Temple)</p></li><li><p class=\"bn-inline-content\">Kathmandu Durbar Square</p></li><li><p class=\"bn-inline-content\">Patan Durbar Square</p></li><li><p class=\"bn-inline-content\">Lumbini (Birth place of Lord Buddha)</p></li></ul><h3 data-level=\"3\">Natural:</h3><ul><li><p class=\"bn-inline-content\">Everest National Park</p></li><li><p class=\"bn-inline-content\">Royal Chitwan National Park</p></li><li><p class=\"bn-inline-content\">Manakamana Temple</p></li><li><p class=\"bn-inline-content\">Pokhara Valley</p></li><li><p class=\"bn-inline-content\">Lumbini</p></li><li><p class=\"bn-inline-content\">Nagarkot</p></li><li><p class=\"bn-inline-content\">Dhulikhel</p></li><li><p class=\"bn-inline-content\">Namche Bazar</p></li><li><p class=\"bn-inline-content\">Mukti Nath</p></li><li><p class=\"bn-inline-content\">Mustang</p></li><li><p class=\"bn-inline-content\">Janakpur</p></li><li><p class=\"bn-inline-content\">Dhankuta and Hile</p></li><li><p class=\"bn-inline-content\">Tansen</p></li><li><p class=\"bn-inline-content\">Khaptad &amp; many more...</p></li></ul>"
+    },
+    {
+      "id": "service-trekking",
+      "slug": "trekking",
+      "title": "Trekking",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/EverestBasecamp-fromKalarPatar.jpg",
+      "descriptionHtml": "<p>Trekking means just days of walking without any advanced training which meanders through the scenic river bank intricately terraced fields and the forested rides connecting picturesque hamlets and mountain Village. Enlighten arranges different trekking programs for travelers to know the local people intimately and experience their cultural hospitality.</p><ul><li><p class=\"bn-inline-content\">Mount Everest Region:</p></li><li><p class=\"bn-inline-content\">Everest Base Camp b) Namche, Lukla</p></li><li><p class=\"bn-inline-content\">Lang Tang and Helambu Trek</p></li><li><p class=\"bn-inline-content\">Kanchanghanja Trek</p></li><li><p class=\"bn-inline-content\">Manaslu Trek</p></li><li><p class=\"bn-inline-content\">Mustang Region</p></li><li><p class=\"bn-inline-content\">Annapurna region: (Pokhara- Ghorepani trek, Pokhara - Annapurna base camp trek, Jomsom trek)</p></li><li><p class=\"bn-inline-content\">Annapurna circuit trek</p></li><li><p class=\"bn-inline-content\">Royal trek, Ridgeline trek (Bharatpokhari to Kristi)</p></li><li><p class=\"bn-inline-content\">Mardi Himal Trek</p></li><li><p class=\"bn-inline-content\">Siklis Trek &amp; many more...</p></li></ul>"
+    },
+    {
+      "id": "service-rafting",
+      "slug": "rafting-white-water",
+      "title": "Rafting (White water)",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/A_group_rafting_down_the_river_(50028512898).jpg",
+      "descriptionHtml": "<p>Nepal has earned a reputation as one of the best destinations in the world for white water rafting. Nepal's thundering waters, provide unmatched thrills for rafting. There are numerous rivers in Nepal, which offer excellent rafting or canoeing experience. Some of the rivers, which are used as commercial rafting are as follows:</p><ul><li><p class=\"bn-inline-content\">Trishuli River</p></li><li><p class=\"bn-inline-content\">Bhote koshi River</p></li><li><p class=\"bn-inline-content\">Marshyangdi River</p></li><li><p class=\"bn-inline-content\">Kaligandaki River</p></li><li><p class=\"bn-inline-content\">Karnali River</p></li><li><p class=\"bn-inline-content\">Sunkoshi River etc.</p></li></ul>"
+    },
+    {
+      "id": "service-jungle-safari",
+      "slug": "jungle-safari",
+      "title": "Jungle Safari",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Elephant_in_Chitwan,_Nepal_(13917028542).jpg",
+      "descriptionHtml": "<p>The geography of Nepal can be divided into mountain hills and plains, A wide range of the earths topography and climate zones are within wide range of ecosystem from tropical jungles of the Terai to the arctic condition of Himalaya, highlands. The southern part of Nepal is Terai, where visitors will find the most exciting safari destination in the world. You will go into deep jungle on elephant back or four wheel drive to view wild animals in their natural habitat. The jungle Safari activity includes canoeing, nature walks, bird watching, excursions and visit to an ethnic Tharu village in the jungle safari park. Enlighten Travel and Tours arranges the Jungle Safari in National Parks, wild life reserve and hunting reserve which are all famous and popular. Some of them are:</p><ul><li><p class=\"bn-inline-content\">Jungle Safari at Chitwan National Park</p></li><li><p class=\"bn-inline-content\">Jungle Safari Royal Bardiya N.P.</p></li><li><p class=\"bn-inline-content\">Dhorpatan Hunting Reserve</p></li><li><p class=\"bn-inline-content\">Suklaphata Wildlife Reserve etc.</p></li></ul>"
+    },
+    {
+      "id": "service-city-tours",
+      "slug": "city-tours",
+      "title": "City Tours",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Kathmandu_Durbar_Market_2007.jpg",
+      "descriptionHtml": "<p>Enlighten also arranges City Tours, in different parts of Nepal.</p><ul><li><p class=\"bn-inline-content\">Kathmandu (2-3 days)</p></li><li><p class=\"bn-inline-content\">Hetauda (2-3 days)</p></li><li><p class=\"bn-inline-content\">Bhaktapur (2-3 days)</p></li><li><p class=\"bn-inline-content\">Pokhara (2-3 days)</p></li><li><p class=\"bn-inline-content\">Lalitpur (1-2 days)</p></li><li><p class=\"bn-inline-content\">Butwal (2-3 days)</p></li><li><p class=\"bn-inline-content\">Dhading (1-2 days)</p></li><li><p class=\"bn-inline-content\">Nepalganj (2-3 days)</p></li><li><p class=\"bn-inline-content\">Chitwan (2-3 days) &amp; many more...</p></li></ul><p>We'll be happy to arrange your package, according to your time factors. Do not hesitate to contact us for special package and reasonable cost. So, your journey begins here.....</p>"
+    }
+  ]
+}
