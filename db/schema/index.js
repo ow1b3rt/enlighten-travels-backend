@@ -9,5 +9,5 @@ export * from "./packageDays.js";
 export * from "./destinations.js";
 export * from "./destinationGallery.js";
 export * from "./packageGallery.js";
-export * from "./contact.js"
-export * from "./custom_trips.js"
+export * from "./contact.js";
+export * from "./custom_trips.js";

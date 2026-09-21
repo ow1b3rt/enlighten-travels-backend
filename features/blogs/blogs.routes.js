@@ -31,6 +31,7 @@ router
     .get((req, res) => commonGetSingleController(req, res, 
       join(blogs, media, {
         on: eq(blogs.thumbnail, media.id),
+        type: "left",
         name: 'blogs',
         fields: {
           ...getTableColumns(blogs),

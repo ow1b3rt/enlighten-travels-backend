@@ -1,6 +1,6 @@
 // packages.repository.js
 
-import { and, eq, getTableColumns, inArray, sql } from "drizzle-orm";
+import { and, eq, getTableColumns, ilike, inArray, sql } from "drizzle-orm";
 import {
   packages,
   packageDestinations,
@@ -26,12 +26,16 @@ export function buildPackagesSource() {
   const locations = db
     .select({
       packageId: packageDestinations.packageId,
-      location: sql`string_agg(${destinations.name}, ', ' order by ${packageDestinations.destinationOrder})`.as(
-        "location"
-      ),
+      location:
+        sql`string_agg(${destinations.name}, ', ' order by ${packageDestinations.destinationOrder})`.as(
+          "location",
+        ),
     })
     .from(packageDestinations)
-    .innerJoin(destinations, eq(packageDestinations.destinationId, destinations.id))
+    .innerJoin(
+      destinations,
+      eq(packageDestinations.destinationId, destinations.id),
+    )
     .groupBy(packageDestinations.packageId)
     .as("locations");
 
@@ -54,7 +58,13 @@ export function buildPackagesSource() {
     .from(packages)
     .leftJoin(media, eq(packages.thumbnail, media.id));
 
-  return { dataQuery, countQuery, columns: fields, name: "packages", baseTable: packages };
+  return {
+    dataQuery,
+    countQuery,
+    columns: fields,
+    name: "packages",
+    baseTable: packages,
+  };
 }
 
 export function buildPackagesWhere(source, query) {
@@ -64,9 +74,13 @@ export function buildPackagesWhere(source, query) {
   const conditions = [];
   if (baseWhere) conditions.push(baseWhere);
 
-  if (query.maxPrice !== undefined && query.maxPrice !== "" && !isNaN(query.maxPrice)) {
+  if (
+    query.maxPrice !== undefined &&
+    query.maxPrice !== "" &&
+    !isNaN(query.maxPrice)
+  ) {
     conditions.push(
-      sql`coalesce(${packages.discountedPrice}, ${packages.price}) <= ${Number(query.maxPrice)}`
+      sql`coalesce(${packages.discountedPrice}, ${packages.price}) <= ${Number(query.maxPrice)}`,
     );
   }
 
@@ -86,19 +100,27 @@ export function buildPackagesWhere(source, query) {
           db
             .select({ id: packageDestinations.packageId })
             .from(packageDestinations)
-            .where(inArray(packageDestinations.destinationId, ids))
-        )
+            .where(inArray(packageDestinations.destinationId, ids)),
+        ),
       );
     }
   }
 
-  const hasMinDays = query.minDays !== undefined && query.minDays !== "" && !isNaN(query.minDays);
-  const hasMaxDays = query.maxDays !== undefined && query.maxDays !== "" && !isNaN(query.maxDays);
+  const hasMinDays =
+    query.minDays !== undefined &&
+    query.minDays !== "" &&
+    !isNaN(query.minDays);
+  const hasMaxDays =
+    query.maxDays !== undefined &&
+    query.maxDays !== "" &&
+    !isNaN(query.maxDays);
 
   if (hasMinDays || hasMaxDays) {
     const havingConditions = [];
-    if (hasMinDays) havingConditions.push(sql`count(*) >= ${Number(query.minDays)}`);
-    if (hasMaxDays) havingConditions.push(sql`count(*) <= ${Number(query.maxDays)}`);
+    if (hasMinDays)
+      havingConditions.push(sql`count(*) >= ${Number(query.minDays)}`);
+    if (hasMaxDays)
+      havingConditions.push(sql`count(*) <= ${Number(query.maxDays)}`);
 
     conditions.push(
       inArray(
@@ -107,8 +129,8 @@ export function buildPackagesWhere(source, query) {
           .select({ id: packageDays.packageId })
           .from(packageDays)
           .groupBy(packageDays.packageId)
-          .having(and(...havingConditions))
-      )
+          .having(and(...havingConditions)),
+      ),
     );
   }
 

@@ -49,7 +49,7 @@ export async function getBlogBySlug(req, res) {
 
   res.status(StatusCodes.OK).json({
     success: true,
-    data: blog,
+    item: blog,
   });
 }
 
