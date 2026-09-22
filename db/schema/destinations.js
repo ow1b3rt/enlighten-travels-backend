@@ -12,5 +12,6 @@ export const destinations = t.pgTable("destinations", {
   type: typeEnum("type").notNull(),
   googleUrl: t.text("google_url"),
   description: t.text("description"),
+  content: t.jsonb("content"),
   thumbnail: t.uuid("thumbnail").references(() => media.id),
 });

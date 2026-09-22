@@ -12,6 +12,7 @@ import destinationsRoutes from "./destinations/destinations.routes.js";
 import packagesRoutes from "./packages/packages.routes.js";
 import contactRoutes from "./contact/contact.routes.js";
 import customTripsRoutes from "./customTrips/customTrips.routes.js";
+import bookingsRoutes from "./bookings/bookings.routes.js";
 
 const router = Router();
 
@@ -26,4 +27,5 @@ router.use("/destinations", destinationsRoutes);
 router.use("/packages", packagesRoutes);
 router.use("/contact", contactRoutes);
 router.use("/customTrip", customTripsRoutes);
+router.use("/bookings", bookingsRoutes);
 export default router;
