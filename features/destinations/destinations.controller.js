@@ -84,7 +84,8 @@ export async function getSingleDestinationController(req, res) {
 export async function getSingleDestinationBySlugController(req, res) {
   const destination = await s.commonGetSingleServiceBySlug(destinations, req.params.slug);
 
-  const destinationThumbnail = await s.commonGetSingleService(media, destination.thumbnail);
+  const destinationThumbnail = destination.thumbnail ? 
+    await s.commonGetSingleService(media, destination.thumbnail) : {};
   destination.thumbnailUrl = destinationThumbnail.url;
 
   const query = db.select({ mediaUrl: media.url })
