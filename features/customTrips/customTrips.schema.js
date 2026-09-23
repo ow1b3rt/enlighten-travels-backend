@@ -15,6 +15,9 @@ export const insertCustomTripSchema = createInsertSchema(customTrips, {
 }).omit({
   id: true,
   createdAt: true,
+  status: true,
 });
 
-export const updateCustomTripSchema = z.strictObject({});
+export const updateCustomTripSchema = z.strictObject({
+  status: z.enum(["pending", "confirmed", "cancelled", "completed"]).optional(),
+});

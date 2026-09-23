@@ -12,3 +12,4 @@ export * from "./packageGallery.js";
 export * from "./contact.js";
 export * from "./custom_trips.js";
 export * from "./bookings.js";
+export * from "./workshopInquiries.js";

@@ -7,8 +7,11 @@ import {
     commonGetSingleController,
     commonUpdateController,
 } from "../../common/feature/common.controller.js";
-import { customTrips } from "#/db/schema/index.js";
-import { insertCustomTripSchema, updateCustomTripSchema } from "./customTrips.schema.js";
+import { workshopInquiries } from "#/db/schema/workshopInquiries.js";
+import { 
+  insertWorkshopInquirySchema,
+  updateWorkshopInquiryStatusSchema
+} from "./workshopInquiry.schema.js";
 
 import {
     authenticateUser,
@@ -20,19 +23,19 @@ export const router = Router();
 router
     .route("/")
     .post((req, res) =>
-        commonCreateController(req, res, customTrips, insertCustomTripSchema),
+        commonCreateController(req, res, workshopInquiries, insertWorkshopInquirySchema),
     )
     .get(authenticateUser, authorizePermissions("admin"), (req, res) =>
-        commonGetController(req, res, customTrips),
+        commonGetController(req, res, workshopInquiries),
     );
 
 router
     .route("/:id")
     .all(authenticateUser, authorizePermissions("admin"))
-    .get((req, res) => commonGetSingleController(req, res, customTrips))
+    .get((req, res) => commonGetSingleController(req, res, workshopInquiries))
     .patch((req, res) =>
-        commonUpdateController(req, res, customTrips, updateCustomTripSchema),
+        commonUpdateController(req, res, workshopInquiries, updateWorkshopInquiryStatusSchema),
     )
-    .delete((req, res) => commonDeleteController(req, res, customTrips));
+    .delete((req, res) => commonDeleteController(req, res, workshopInquiries));
 
 export default router;

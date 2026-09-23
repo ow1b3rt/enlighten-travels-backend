@@ -3,6 +3,13 @@ import * as t from "drizzle-orm/pg-core";
 import { pkid } from "./helpers.js";
 import { timestamp } from "drizzle-orm/pg-core";
 
+export const customizeStatusEnum = t.pgEnum("customize_status", [
+  "pending",
+  "confirmed",
+  "cancelled",
+  "completed",
+]);
+
 export const customTrips = t.pgTable(
   "custom_trips",
   {
@@ -19,6 +26,8 @@ export const customTrips = t.pgTable(
     travelDate: t.date("travel_date"),
 
     noOfTravellers: t.integer("no_of_travellers"),
+
+    status: customizeStatusEnum("status").notNull().default("pending"),
 
     tripType: t.varchar("trip_type", { length: 50 }),
 

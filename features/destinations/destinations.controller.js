@@ -64,7 +64,8 @@ export async function updateDestinationController(req, res) {
 export async function getSingleDestinationController(req, res) {
   const destination = await s.commonGetSingleService(destinations, req.params.id);
 
-  const destinationThumbnail = await s.commonGetSingleService(media, destination.thumbnail);
+  const destinationThumbnail = destination.thumbnail ? 
+    await s.commonGetSingleService(media, destination.thumbnail) : {};
   destination.thumbnailUrl = destinationThumbnail.url;
 
   const galleryItems = await db.select({ mediaId: destinationGallery.mediaId })
