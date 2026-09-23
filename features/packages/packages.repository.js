@@ -91,6 +91,13 @@ export function buildPackagesWhere(source, query) {
     }
   }
 
+  if (query.subcategories) {
+    const subcategories = query.subcategories.split(",").filter(Boolean);
+    if (subcategories.length > 0) {
+      conditions.push(inArray(packages.subcategory, subcategories));
+    }
+  }
+
   if (query.destinationIds) {
     const ids = query.destinationIds.split(",").filter(Boolean);
     if (ids.length > 0) {
