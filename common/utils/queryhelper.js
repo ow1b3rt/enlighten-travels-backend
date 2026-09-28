@@ -85,8 +85,8 @@ export async function paginateAndSearch(
   return {
     items,
     total,
-    page,
-    pageSize,
+    Number(page),
+    Number(pageSize),
     totalPages: Math.ceil(total / pageSize),
   };
 }
