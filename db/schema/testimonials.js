@@ -10,6 +10,12 @@ export const testimonials = t.pgTable("testimonials", {
 
   name: t.varchar("name", { length: 255 }).notNull(),
   image: t.uuid("image").references(() => media.id),
-
+  rating: t.smallint("rating").notNull().default(5),
   description: t.text("description"),
-});
+},
+ 
+  (table) => [
+    t.check("rating_range", sql`${table.rating} >= 1 AND ${table.rating} <= 5`),
+  ],    
+                                      
+);
