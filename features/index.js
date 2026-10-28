@@ -15,6 +15,7 @@ import customTripsRoutes from "./customTrips/customTrips.routes.js";
 import bookingsRoutes from "./bookings/bookings.routes.js";
 import workshopRoutes from "./workshopInquiries/workshopInquiry.routes.js";
 import careerRoutes from "./careers/careers.routes.js";
+import noticeRoutes from "./notices/notices.routes.js";
 import jobRoutes from "./jobs/jobs.routes.js";
 
 const router = Router();
@@ -34,5 +35,6 @@ router.use("/careers", careerRoutes);
 router.use("/jobs", jobRoutes);
 router.use("/bookings", bookingsRoutes);
 router.use("/workshop", workshopRoutes);
+router.use("/notices", noticeRoutes);
 
 export default router;
