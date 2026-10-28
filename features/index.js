@@ -14,6 +14,8 @@ import contactRoutes from "./contact/contact.routes.js";
 import customTripsRoutes from "./customTrips/customTrips.routes.js";
 import bookingsRoutes from "./bookings/bookings.routes.js";
 import workshopRoutes from "./workshopInquiries/workshopInquiry.routes.js";
+import careerRoutes from "./careers/careers.routes.js";
+import jobRoutes from "./jobs/jobs.routes.js";
 
 const router = Router();
 
@@ -28,6 +30,8 @@ router.use("/destinations", destinationsRoutes);
 router.use("/packages", packagesRoutes);
 router.use("/contact", contactRoutes);
 router.use("/customTrip", customTripsRoutes);
+router.use("/careers", careerRoutes);
+router.use("/jobs", jobRoutes);
 router.use("/bookings", bookingsRoutes);
 router.use("/workshop", workshopRoutes);
 

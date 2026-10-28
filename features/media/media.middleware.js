@@ -10,7 +10,8 @@ const uploadFolders = {
     profilePics: 'profile_pics',
     documents: "documents",
     thumbnails: "thumbnails",
-    media: "media"
+  media: "media",
+  resume: "resume",
 };
 
 

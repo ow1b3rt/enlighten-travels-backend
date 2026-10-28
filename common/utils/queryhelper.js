@@ -133,3 +133,31 @@ export function resolveOrderBy(orderByParam, columns) {
 
   return isDescending ? desc(column) : asc(column);
 }
+
+export function joinMany(baseTable, joins, { fields, name } = {}) {
+  let dataQuery = fields
+    ? db.select(fields).from(baseTable)
+    : db.select().from(baseTable);
+
+  let countQuery = db.select({ count: sql`count(*)::int` }).from(baseTable);
+
+  for (const { table, on, type = "inner" } of joins) {
+    const method = JOIN_METHODS[type];
+
+    if (!method) {
+      throw new Error(`Unknown join type: ${type}`);
+    }
+
+    dataQuery = dataQuery[method](table, on);
+    countQuery = countQuery[method](table, on);
+  }
+
+  return {
+    dataQuery,
+    countQuery,
+    columns: fields ?? getTableColumns(baseTable),
+    name,
+    baseTable,
+  };
+}
+
