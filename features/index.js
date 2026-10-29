@@ -17,6 +17,7 @@ import workshopRoutes from "./workshopInquiries/workshopInquiry.routes.js";
 import careerRoutes from "./careers/careers.routes.js";
 import noticeRoutes from "./notices/notices.routes.js";
 import jobRoutes from "./jobs/jobs.routes.js";
+import ticketingRoutes from "./ticketing/ticketing.routes.js";
 
 const router = Router();
 
@@ -36,5 +37,6 @@ router.use("/jobs", jobRoutes);
 router.use("/bookings", bookingsRoutes);
 router.use("/workshop", workshopRoutes);
 router.use("/notices", noticeRoutes);
+router.use("/ticketing", ticketingRoutes);
 
 export default router;

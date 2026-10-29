@@ -15,3 +15,4 @@ export * from "./bookings.js";
 export * from "./workshopInquiries.js";
 export * from "./careers.js";
 export * from "./notices.js";
+export * from "./ticketing.js";
